@@ -1,47 +1,26 @@
+FROM alpine:latest as build
 
-FROM golang:1.11-stretch AS build
+ENV HUGO_VERSION 0.55.6
+ENV HUGO_BINARY hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
 
+# Install Hugo
+RUN set -x && \
+  apk add --update wget ca-certificates && \
+  wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY} && \
+  tar xzf ${HUGO_BINARY} && \
+  rm -r ${HUGO_BINARY} && \
+  mv hugo /usr/bin && \
+  apk del wget ca-certificates && \
+  rm /var/cache/apk/*
 
-WORKDIR /go/src/github.com/gohugoio/hugo
-RUN apt-get install \
-    git gcc g++ binutils
-COPY . /go/src/github.com/gohugoio/hugo/
-ENV GO111MODULE=on
-RUN go get -d .
-
-ARG CGO=0
-ENV CGO_ENABLED=${CGO}
-ENV GOOS=linux
-
-# default non-existent build tag so -tags always has an arg
-ARG BUILD_TAGS="99notag"
-RUN go install -ldflags '-w -extldflags "-static"' -tags ${BUILD_TAGS}
-
-# ---
-
-FROM alpine:3.9
-RUN apk add --no-cache ca-certificates
-COPY --from=build /go/bin/hugo /hugo
-ARG  SITEDIR="/site"
-WORKDIR ${SITEDIR}
-COPY . ${SITEDIR}
-RUN cd ${SITEDIR} && hugo --minify
+COPY ./ /site
+WORKDIR /site
+RUN /usr/bin/hugo
 
 #DEPLOY/Run
 FROM nginx:1.17-alpine
-WORKDIR /usr/share/nginx/html/
-
-# Clean the default public folder
-# RUN rm -fr * .??*
-
-# This inserts a line in the default config file, including our file "expires.inc"
-# RUN sed -i '9i\        include /etc/nginx/conf.d/expires.inc;\n' /etc/nginx/conf.d/default.conf
+COPY --from=build /site/public /usr/share/nginx/html
 
 # The file "expires.inc" is copied into the image
 # COPY _docker/expires.inc /etc/nginx/conf.d/expires.inc
 # RUN chmod 0644 /etc/nginx/conf.d/expires.inc
-
-
-# Clean the default public folder
-RUN rm -fr * .??*
-COPY --from=build ${SITEDIR}/. /usr/share/nginx/html/
