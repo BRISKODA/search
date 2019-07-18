@@ -1,0 +1,27 @@
+baseurl = "https://search.briskoda.net"
+publishdir    = "public"
+title = "Search - BRISKODA"
+canonifyurls  = true
+
+DefaultContentLanguage = "en"
+theme = "briskoda"
+googleAnalytics = ""
+
+[params]
+    description = "BRISKODA Forums Search"
+    favicon = "favicon.ico"
+    logo = "/briskoda-logo.png"
+
+[params.copy]
+    text = ""
+
+[params.contact]
+    email = "hello@briskoda.net"
+    phone = ""
+    address = ""
+
+[params.social]
+    twitter = "https://twitter.com/briskoda"
+    facebook = "https://facebook.com/briskoda"
+    github = "https://github.com/briskoda"
+    gitlab = "https://gitlab.com/briskoda"
