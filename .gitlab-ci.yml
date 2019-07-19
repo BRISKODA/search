@@ -1,5 +1,6 @@
 variables:
   CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
+  GIT_SUBMODULE_STRATEGY: recursive
 
 stages:
   # - test
