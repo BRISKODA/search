@@ -22,7 +22,7 @@ services:
         - traefik.redirectorservice.frontend.redirect.entryPoint=https
         # Traefik service that listens to HTTPS
         - traefik.webservice.frontend.entryPoints=https
-        - "traefik.frontend.rule=Host:search.briskoda.net"
+        - traefik.frontend.rule=Host:search.briskoda.net
 networks:
   traefik-public:
     external: true
