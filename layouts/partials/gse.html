@@ -1,19 +1,16 @@
 <div class="ph3 ph4-ns pt3 pt4-ns tl">
-  <script>
-    (function() {
-      var cx = '013118078702907405983:6qrvy-rv88a';
-      var gcse = document.createElement('script');
-      gcse.type = 'text/javascript';
-      gcse.async = true;
-      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(gcse, s);
-    })();
-  </script>
-  <gcse:searchbox></gcse:searchbox>
+  <script async src="https://cse.google.com/cse.js?cx=013118078702907405983:6qrvy-rv88a"></script>
+  <div class="gcse-searchbox"></div>
 </div>
 
 <section class="ph3 ph4-ns pt3 pt4-ns tl">
   <h5 class="pt0 mt0 mb1 ">Your Results</h5>
-  <gcse:searchresults></gcse:searchresults>
+  <div class="gcse-searchresults"></div>
+</section>
+
+<section class="ph3 ph4-ns pt3 pt4-ns tl">
+    <h5 class="pt0 mt0 mb1 ">Popular Searches</h5>
+    <div id="queries"></div>
+    <script src="https://cse.google.com/query_renderer.js"></script>
+    <script src="https://cse.google.com/api/013118078702907405983:6qrvy-rv88a/popularqueryjs?view=overall&callback=(new+PopularQueryRenderer(document.getElementById(%22queries%22))).render"></script>
 </section>
