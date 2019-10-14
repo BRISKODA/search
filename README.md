@@ -1,8 +1,10 @@
 # BRISKODA Search
 
-The 2019 BRISKODA Search minisite, using [Hugo], deployed via [ExoScale]
+The 2019 BRISKODA Search minisite, using [Hugo], deployed via [Netlify]
 
-## Building locally
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f71bc439-45fe-45a0-8f37-af61ae6b95fd/deploy-status)](https://app.netlify.com/sites/briskoda-search-88b619/deploys)
+
+## Building
 
 To work locally with this project, you'll have to follow the steps below:
 
@@ -28,6 +30,6 @@ your site can be accessed under `localhost:1313/hugo/`.
    set in order to serve static assets under a relative URL.
 
 [hugo]: https://gohugo.io
-[exoscale]: https://exoscale.com
+[netlify]: https://netlify.com
 [install]: https://gohugo.io/overview/installing/
 [documentation]: https://gohugo.io/overview/introduction/
